@@ -1,21 +1,20 @@
 [package]
 name = "myService"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
+
+[build]
+target = "wasm32-unknown-unknown"
 
 [[bin]]
 name = "myService"
 path = "src/main.rs"
 
 [dependencies]
-marine-rs-sdk = "0.6.15"
-lazy_static = "1.4.0"
-async-std = "1.10"  # Use async-std for async tasks if appropriate
-tokio = "1.38.0"
-surrealdb = "1.5.1"
-serde = "1.0.203"
-ring = "0.17.8"
-# surrealdb = "1.5.1" # Ensure `surrealdb` is WASM-compatible or replaced
+marine-rs-sdk = "0.14.0"
+surrealdb = { git = "https://github.com/surrealdb/surrealdb", default-features = false, features = [
+  "kv-mem",
+] }
 
 
 [dev-dependencies]

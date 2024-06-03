@@ -2,4 +2,4 @@ aqua Services declares *
 
 
 service MyService("myService"):
-  create_vector(dimension: i32, path: string)
+  greeting(name: string) -> string
