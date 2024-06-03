@@ -1,0 +1,56 @@
+aqua Deals declares *
+
+data MyDeployment2:
+    chainNetworkId: u64
+    dealId: string
+    dealIdOriginal: string
+    definition: string
+    matched: bool
+    timestamp: string
+
+data MyDeployment3:
+    chainNetworkId: u64
+    dealId: string
+    dealIdOriginal: string
+    definition: string
+    matched: bool
+    timestamp: string
+
+data MyDeployment:
+    chainNetworkId: u64
+    dealId: string
+    dealIdOriginal: string
+    definition: string
+    timestamp: string
+
+data Deals:
+    myDeployment2: ?MyDeployment2
+    myDeployment3: ?MyDeployment3
+    myDeployment: ?MyDeployment
+
+func get() -> Deals:
+    <- Deals(
+        myDeployment3=?[MyDeployment3(
+            definition="bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq",
+            timestamp="2024-05-31T11:31:37.412Z",
+            dealIdOriginal="0xadeb03C7f210900A7f0521b73A013935C8943C6a",
+            dealId="adeb03c7f210900a7f0521b73a013935c8943c6a",
+            chainNetworkId=2358716091832359,
+            matched=true
+        )],
+        myDeployment=?[MyDeployment(
+            definition="bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq",
+            timestamp="2024-05-31T11:16:30.226Z",
+            dealIdOriginal="0x2cD0091c6a04613386af1966aea8183C1070171B",
+            dealId="2cd0091c6a04613386af1966aea8183c1070171b",
+            chainNetworkId=2358716091832359
+        )],
+        myDeployment2=?[MyDeployment2(
+            definition="bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq",
+            timestamp="2024-05-31T11:26:59.551Z",
+            dealIdOriginal="0x3d0276bD4e2370B56133AE9B3Ebb5ed9ea0b9BED",
+            dealId="3d0276bd4e2370b56133ae9b3ebb5ed9ea0b9bed",
+            chainNetworkId=2358716091832359,
+            matched=false
+        )]
+    )

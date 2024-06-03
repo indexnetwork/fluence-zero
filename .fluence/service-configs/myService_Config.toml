@@ -1,0 +1,12 @@
+total_memory_limit = "2GB"
+
+[[module]]
+name = "myService"
+load_from = "/Users/serhat/Code/fluence/zero/target/wasm32-wasi/release/myService.wasm"
+
+[module.wasi.mapped_dirs]
+"/tmp" = "/Users/serhat/Code/fluence/zero/.fluence/tmp/volumes/services/myService/service/tmp"
+"/storage" = "/Users/serhat/Code/fluence/zero/.fluence/tmp/volumes/services/myService/service/storage"
+"/tmp/module" = "/Users/serhat/Code/fluence/zero/.fluence/tmp/volumes/services/myService/modules/myService/tmp/module"
+"/storage/module" = "/Users/serhat/Code/fluence/zero/.fluence/tmp/volumes/services/myService/modules/myService/storage/module"
+"/tmp/vault" = "/Users/serhat/Code/fluence/zero/.fluence/tmp/volumes/particles"
