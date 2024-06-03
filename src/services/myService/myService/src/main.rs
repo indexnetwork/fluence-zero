@@ -6,7 +6,6 @@ use surrealdb::engine::local::Db;
 use surrealdb::engine::local::Mem;
 use surrealdb::sql::{Number, Thing};
 use surrealdb::Surreal;
-use tokio;
 
 module_manifest!();
 

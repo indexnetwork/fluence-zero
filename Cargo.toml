@@ -1,2 +1,7 @@
 [workspace]
+resolver = "2"
 members = [ "src/services/myService/myService" ]
+
+[patch."https://github.com/surrealdb/surrealdb".tokio]
+version = "1.38.0"
+features = [ "rt", "sync" ]
