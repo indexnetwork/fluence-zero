@@ -1,6 +1,7 @@
 import { Fluence } from "@fluencelabs/js-client";
 import relays from "./relays.json" assert { type: "json" };
 import {
+  createVector,
   helloWorld,
   helloWorldRemote,
   runDeployedServices,
@@ -24,6 +25,12 @@ const aquaFunctions = [
     name: "helloWorldRemote",
     fn() {
       return helloWorldRemote("Index");
+    },
+  },
+  {
+    name: "createVector",
+    fn() {
+      return createVector([1.0, 2.0, 3.0]);
     },
   },
   {

@@ -8,7 +8,7 @@ use "hosts.aqua"
 import "services.aqua"
 
 -- IMPORTANT: Add exports for all functions that you want to run
-export helloWorld, helloWorldRemote, getInfo, getInfos
+export helloWorld, helloWorldRemote, getInfo, getInfos, createVector
 
 -- DOCUMENTATION:
 -- https://fluence.dev
@@ -38,7 +38,7 @@ func runDeployedServices() -> []Answer:
             answers <<- Answer(answer=nil, worker=w)
         else:
             on w.worker_id! via w.host_id:
-                answer <- MyService.greeting("fluence")
+                answer <- MyService.call_create_vector([1.0, 2.0, 3.0])
                 answers <<- Answer(answer=?[answer], worker=w)
 
     <- answers
@@ -106,3 +106,16 @@ func getInfos(peers: []PeerId) -> []Info:
         on p:
             infos <- Peer.identify()
     <- infos
+
+
+service VectorService("vector_service_id"):
+    call_create_vector(values: []f64) -> string
+    call_search_vector(values: []f64) -> string
+
+data VectorRecord:
+    id: string
+
+-- Function to create a vector
+func createVector(values: []f64) -> string:
+    result <- VectorService.call_create_vector(values)
+    <- result
