@@ -32,8 +32,13 @@ async fn init_db() -> surrealdb::Result<Surreal<Db>> {
 
 async fn get_or_init_db() -> Arc<Mutex<Option<Surreal<Db>>>> {
     let arc_db = DB.clone();
+    info!("Getting or initializing database");
     let mut db_guard = arc_db.lock().await;
+    info!("Db guard locked");
+    // if db_guard.is_none() log it
+
     if db_guard.is_none() {
+        info!("Db Guard is none");
         match init_db().await {
             Ok(db) => {
                 *db_guard = Some(db);

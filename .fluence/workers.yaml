@@ -28,6 +28,20 @@ deals:
       dealId: adeb03c7f210900a7f0521b73a013935c8943c6a
       chainNetworkId: 2358716091832359
       matched: true
+    myDeployment4:
+      definition: bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm
+      timestamp: 2024-06-10T12:07:47.223Z
+      dealIdOriginal: "0x124b5E53D21D36F8E3FD40e4dCc4Ede49302443e"
+      dealId: 124b5e53d21d36f8e3fd40e4dcc4ede49302443e
+      chainNetworkId: 2358716091832359
+      matched: true
+    myDeployment5:
+      definition: bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm
+      timestamp: 2024-06-10T13:15:00.277Z
+      dealIdOriginal: "0xE948A13dC8728dB0Ab952F61f3E4c095697bCd65"
+      dealId: e948a13dc8728db0ab952f61f3e4c095697bcd65
+      chainNetworkId: 2358716091832359
+      matched: true
   local:
     myDeployment:
       definition: bafkreib6gso2pvofsf2byja7akxwewu7q4nxkwgyukw265i2bij5g4vjri

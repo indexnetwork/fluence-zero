@@ -16,6 +16,22 @@ data MyDeployment3:
     matched: bool
     timestamp: string
 
+data MyDeployment4:
+    chainNetworkId: u64
+    dealId: string
+    dealIdOriginal: string
+    definition: string
+    matched: bool
+    timestamp: string
+
+data MyDeployment5:
+    chainNetworkId: u64
+    dealId: string
+    dealIdOriginal: string
+    definition: string
+    matched: bool
+    timestamp: string
+
 data MyDeployment:
     chainNetworkId: u64
     dealId: string
@@ -26,15 +42,17 @@ data MyDeployment:
 data Deals:
     myDeployment2: ?MyDeployment2
     myDeployment3: ?MyDeployment3
+    myDeployment4: ?MyDeployment4
+    myDeployment5: ?MyDeployment5
     myDeployment: ?MyDeployment
 
 func get() -> Deals:
     <- Deals(
-        myDeployment3=?[MyDeployment3(
-            definition="bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq",
-            timestamp="2024-05-31T11:31:37.412Z",
-            dealIdOriginal="0xadeb03C7f210900A7f0521b73A013935C8943C6a",
-            dealId="adeb03c7f210900a7f0521b73a013935c8943c6a",
+        myDeployment5=?[MyDeployment5(
+            definition="bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm",
+            timestamp="2024-06-10T13:15:00.277Z",
+            dealIdOriginal="0xE948A13dC8728dB0Ab952F61f3E4c095697bCd65",
+            dealId="e948a13dc8728db0ab952f61f3e4c095697bcd65",
             chainNetworkId=2358716091832359,
             matched=true
         )],
@@ -52,5 +70,21 @@ func get() -> Deals:
             dealId="3d0276bd4e2370b56133ae9b3ebb5ed9ea0b9bed",
             chainNetworkId=2358716091832359,
             matched=false
+        )],
+        myDeployment3=?[MyDeployment3(
+            definition="bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq",
+            timestamp="2024-05-31T11:31:37.412Z",
+            dealIdOriginal="0xadeb03C7f210900A7f0521b73A013935C8943C6a",
+            dealId="adeb03c7f210900a7f0521b73a013935c8943c6a",
+            chainNetworkId=2358716091832359,
+            matched=true
+        )],
+        myDeployment4=?[MyDeployment4(
+            definition="bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm",
+            timestamp="2024-06-10T12:07:47.223Z",
+            dealIdOriginal="0x124b5E53D21D36F8E3FD40e4dCc4Ede49302443e",
+            dealId="124b5e53d21d36f8e3fd40e4dcc4ede49302443e",
+            chainNetworkId=2358716091832359,
+            matched=true
         )]
     )

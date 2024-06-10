@@ -7,10 +7,10 @@
 version: 8
 
 deployments:
-  myDeployment3:
+  myDeployment5:
     targetWorkers: 3
     pricePerWorkerEpoch: "0.5"
-    initialBalance: "3"
+    initialBalance: "10"
     services: [myService]
     spells: []
 

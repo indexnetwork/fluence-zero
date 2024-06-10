@@ -108,7 +108,7 @@ func getInfos(peers: []PeerId) -> []Info:
     <- infos
 
 
-service VectorService("vector_service_id"):
+service VectorService("cc4a9e15-0f50-48d1-99fb-6bb57d44c666"):
     call_create_vector(values: []f64) -> string
     call_search_vector(values: []f64) -> string
 

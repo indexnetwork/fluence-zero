@@ -19,6 +19,69 @@ import {
 
 
 // Functions
+export const createVector_script = `
+(xor
+ (seq
+  (seq
+   (seq
+    (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
+    (call %init_peer_id% ("getDataSrv" "values") [] -values-arg-)
+   )
+   (call %init_peer_id% ("cc4a9e15-0f50-48d1-99fb-6bb57d44c666" "call_create_vector") [-values-arg-] ret)
+  )
+  (call %init_peer_id% ("callbackSrv" "response") [ret])
+ )
+ (call %init_peer_id% ("errorHandlingSrv" "error") [:error: 0])
+)
+`;
+
+export type CreateVectorParams = [values: number[], config?: {ttl?: number}] | [peer: IFluenceClient$$, values: number[], config?: {ttl?: number}];
+
+export type CreateVectorResult = Promise<string>;
+
+export function createVector(...args: CreateVectorParams): CreateVectorResult {
+    return callFunction$$(
+        args,
+        {
+    "functionName": "createVector",
+    "arrow": {
+        "domain": {
+            "fields": {
+                "values": {
+                    "type": {
+                        "name": "f64",
+                        "tag": "scalar"
+                    },
+                    "tag": "array"
+                }
+            },
+            "tag": "labeledProduct"
+        },
+        "codomain": {
+            "items": [
+                {
+                    "name": "string",
+                    "tag": "scalar"
+                }
+            ],
+            "tag": "unlabeledProduct"
+        },
+        "tag": "arrow"
+    },
+    "names": {
+        "relay": "-relay-",
+        "getDataSrv": "getDataSrv",
+        "callbackSrv": "callbackSrv",
+        "responseSrv": "callbackSrv",
+        "responseFnName": "response",
+        "errorHandlingSrv": "errorHandlingSrv",
+        "errorFnName": "error"
+    }
+},
+        createVector_script
+    );
+}
+
 export const helloWorldRemote_script = `
 (xor
  (seq
@@ -104,98 +167,166 @@ export const showSubnet_script = `
             (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
             (par
              (par
-              (new $option-inline
-               (seq
-                (xor
+              (par
+               (par
+                (new $option-inline
                  (seq
-                  (new %MyDeployment_obj_map
+                  (xor
                    (seq
+                    (new %MyDeployment_obj_map
+                     (seq
+                      (seq
+                       (seq
+                        (seq
+                         (seq
+                          (ap ("chainNetworkId" 2358716091832359) %MyDeployment_obj_map)
+                          (ap ("dealId" "2cd0091c6a04613386af1966aea8183c1070171b") %MyDeployment_obj_map)
+                         )
+                         (ap ("dealIdOriginal" "0x2cD0091c6a04613386af1966aea8183C1070171B") %MyDeployment_obj_map)
+                        )
+                        (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment_obj_map)
+                       )
+                       (ap ("timestamp" "2024-05-31T11:16:30.226Z") %MyDeployment_obj_map)
+                      )
+                      (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
+                     )
+                    )
+                    (ap MyDeployment_obj $option-inline)
+                   )
+                   (null)
+                  )
+                  (canon %init_peer_id% $option-inline  #option-inline-0)
+                 )
+                )
+                (new $option-inline-1
+                 (seq
+                  (xor
+                   (seq
+                    (new %MyDeployment2_obj_map
+                     (seq
+                      (seq
+                       (seq
+                        (seq
+                         (seq
+                          (seq
+                           (ap ("chainNetworkId" 2358716091832359) %MyDeployment2_obj_map)
+                           (ap ("dealId" "3d0276bd4e2370b56133ae9b3ebb5ed9ea0b9bed") %MyDeployment2_obj_map)
+                          )
+                          (ap ("dealIdOriginal" "0x3d0276bD4e2370B56133AE9B3Ebb5ed9ea0b9BED") %MyDeployment2_obj_map)
+                         )
+                         (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment2_obj_map)
+                        )
+                        (ap ("matched" false) %MyDeployment2_obj_map)
+                       )
+                       (ap ("timestamp" "2024-05-31T11:26:59.551Z") %MyDeployment2_obj_map)
+                      )
+                      (canon %init_peer_id% %MyDeployment2_obj_map  MyDeployment2_obj)
+                     )
+                    )
+                    (ap MyDeployment2_obj $option-inline-1)
+                   )
+                   (null)
+                  )
+                  (canon %init_peer_id% $option-inline-1  #option-inline-1-0)
+                 )
+                )
+               )
+               (new $option-inline-2
+                (seq
+                 (xor
+                  (seq
+                   (new %MyDeployment3_obj_map
                     (seq
                      (seq
                       (seq
                        (seq
-                        (ap ("chainNetworkId" 2358716091832359) %MyDeployment_obj_map)
-                        (ap ("dealId" "2cd0091c6a04613386af1966aea8183c1070171b") %MyDeployment_obj_map)
+                        (seq
+                         (seq
+                          (ap ("chainNetworkId" 2358716091832359) %MyDeployment3_obj_map)
+                          (ap ("dealId" "adeb03c7f210900a7f0521b73a013935c8943c6a") %MyDeployment3_obj_map)
+                         )
+                         (ap ("dealIdOriginal" "0xadeb03C7f210900A7f0521b73A013935C8943C6a") %MyDeployment3_obj_map)
+                        )
+                        (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment3_obj_map)
                        )
-                       (ap ("dealIdOriginal" "0x2cD0091c6a04613386af1966aea8183C1070171B") %MyDeployment_obj_map)
+                       (ap ("matched" true) %MyDeployment3_obj_map)
                       )
-                      (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment_obj_map)
+                      (ap ("timestamp" "2024-05-31T11:31:37.412Z") %MyDeployment3_obj_map)
                      )
-                     (ap ("timestamp" "2024-05-31T11:16:30.226Z") %MyDeployment_obj_map)
+                     (canon %init_peer_id% %MyDeployment3_obj_map  MyDeployment3_obj)
                     )
-                    (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                    )
+                   (ap MyDeployment3_obj $option-inline-2)
                   )
-                  (ap MyDeployment_obj $option-inline)
+                  (null)
                  )
-                 (null)
+                 (canon %init_peer_id% $option-inline-2  #option-inline-2-0)
                 )
-                (canon %init_peer_id% $option-inline  #option-inline-0)
                )
               )
-              (new $option-inline-1
+              (new $option-inline-3
                (seq
                 (xor
                  (seq
-                  (new %MyDeployment2_obj_map
+                  (new %MyDeployment4_obj_map
                    (seq
                     (seq
                      (seq
                       (seq
                        (seq
                         (seq
-                         (ap ("chainNetworkId" 2358716091832359) %MyDeployment2_obj_map)
-                         (ap ("dealId" "3d0276bd4e2370b56133ae9b3ebb5ed9ea0b9bed") %MyDeployment2_obj_map)
+                         (ap ("chainNetworkId" 2358716091832359) %MyDeployment4_obj_map)
+                         (ap ("dealId" "124b5e53d21d36f8e3fd40e4dcc4ede49302443e") %MyDeployment4_obj_map)
                         )
-                        (ap ("dealIdOriginal" "0x3d0276bD4e2370B56133AE9B3Ebb5ed9ea0b9BED") %MyDeployment2_obj_map)
+                        (ap ("dealIdOriginal" "0x124b5E53D21D36F8E3FD40e4dCc4Ede49302443e") %MyDeployment4_obj_map)
                        )
-                       (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment2_obj_map)
+                       (ap ("definition" "bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm") %MyDeployment4_obj_map)
                       )
-                      (ap ("matched" false) %MyDeployment2_obj_map)
+                      (ap ("matched" true) %MyDeployment4_obj_map)
                      )
-                     (ap ("timestamp" "2024-05-31T11:26:59.551Z") %MyDeployment2_obj_map)
+                     (ap ("timestamp" "2024-06-10T12:07:47.223Z") %MyDeployment4_obj_map)
                     )
-                    (canon %init_peer_id% %MyDeployment2_obj_map  MyDeployment2_obj)
+                    (canon %init_peer_id% %MyDeployment4_obj_map  MyDeployment4_obj)
                    )
                   )
-                  (ap MyDeployment2_obj $option-inline-1)
+                  (ap MyDeployment4_obj $option-inline-3)
                  )
                  (null)
                 )
-                (canon %init_peer_id% $option-inline-1  #option-inline-1-0)
+                (canon %init_peer_id% $option-inline-3  #option-inline-3-0)
                )
               )
              )
-             (new $option-inline-2
+             (new $option-inline-4
               (seq
                (xor
                 (seq
-                 (new %MyDeployment3_obj_map
+                 (new %MyDeployment5_obj_map
                   (seq
                    (seq
                     (seq
                      (seq
                       (seq
                        (seq
-                        (ap ("chainNetworkId" 2358716091832359) %MyDeployment3_obj_map)
-                        (ap ("dealId" "adeb03c7f210900a7f0521b73a013935c8943c6a") %MyDeployment3_obj_map)
+                        (ap ("chainNetworkId" 2358716091832359) %MyDeployment5_obj_map)
+                        (ap ("dealId" "e948a13dc8728db0ab952f61f3e4c095697bcd65") %MyDeployment5_obj_map)
                        )
-                       (ap ("dealIdOriginal" "0xadeb03C7f210900A7f0521b73A013935C8943C6a") %MyDeployment3_obj_map)
+                       (ap ("dealIdOriginal" "0xE948A13dC8728dB0Ab952F61f3E4c095697bCd65") %MyDeployment5_obj_map)
                       )
-                      (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment3_obj_map)
+                      (ap ("definition" "bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm") %MyDeployment5_obj_map)
                      )
-                     (ap ("matched" true) %MyDeployment3_obj_map)
+                     (ap ("matched" true) %MyDeployment5_obj_map)
                     )
-                    (ap ("timestamp" "2024-05-31T11:31:37.412Z") %MyDeployment3_obj_map)
+                    (ap ("timestamp" "2024-06-10T13:15:00.277Z") %MyDeployment5_obj_map)
                    )
-                   (canon %init_peer_id% %MyDeployment3_obj_map  MyDeployment3_obj)
+                   (canon %init_peer_id% %MyDeployment5_obj_map  MyDeployment5_obj)
                   )
                  )
-                 (ap MyDeployment3_obj $option-inline-2)
+                 (ap MyDeployment5_obj $option-inline-4)
                 )
                 (null)
                )
-               (canon %init_peer_id% $option-inline-2  #option-inline-2-0)
+               (canon %init_peer_id% $option-inline-4  #option-inline-4-0)
               )
              )
             )
@@ -204,10 +335,16 @@ export const showSubnet_script = `
             (seq
              (seq
               (seq
-               (ap ("myDeployment" #option-inline-0) %Deals_obj_map)
-               (ap ("myDeployment2" #option-inline-1-0) %Deals_obj_map)
+               (seq
+                (seq
+                 (ap ("myDeployment" #option-inline-0) %Deals_obj_map)
+                 (ap ("myDeployment2" #option-inline-1-0) %Deals_obj_map)
+                )
+                (ap ("myDeployment3" #option-inline-2-0) %Deals_obj_map)
+               )
+               (ap ("myDeployment4" #option-inline-3-0) %Deals_obj_map)
               )
-              (ap ("myDeployment3" #option-inline-2-0) %Deals_obj_map)
+              (ap ("myDeployment5" #option-inline-4-0) %Deals_obj_map)
              )
              (canon %init_peer_id% %Deals_obj_map  Deals_obj)
             )
@@ -368,28 +505,28 @@ export const showSubnet_script = `
                       )
                      )
                      (par
-                      (new $option-inline-3
+                      (new $option-inline-5
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $services_aliases  #push-to-stream-151)
-                          (ap #push-to-stream-151 $option-inline-3)
+                          (canon w-0.$.worker_id.[0] $services_aliases  #push-to-stream-183)
+                          (ap #push-to-stream-183 $option-inline-5)
                          )
                          (null)
                         )
-                        (canon w-0.$.worker_id.[0] $option-inline-3  #option-inline-3-0)
+                        (canon w-0.$.worker_id.[0] $option-inline-5  #option-inline-5-0)
                        )
                       )
-                      (new $option-inline-4
+                      (new $option-inline-6
                        (seq
                         (xor
                          (seq
-                          (canon w-0.$.worker_id.[0] $spells_aliases  #push-to-stream-156)
-                          (ap #push-to-stream-156 $option-inline-4)
+                          (canon w-0.$.worker_id.[0] $spells_aliases  #push-to-stream-188)
+                          (ap #push-to-stream-188 $option-inline-6)
                          )
                          (null)
                         )
-                        (canon w-0.$.worker_id.[0] $option-inline-4  #option-inline-4-0)
+                        (canon w-0.$.worker_id.[0] $option-inline-6  #option-inline-6-0)
                        )
                       )
                      )
@@ -400,9 +537,9 @@ export const showSubnet_script = `
                        (seq
                         (seq
                          (ap ("host_id" w-0.$.host_id) %WorkerServices_obj_map)
-                         (ap ("services" #option-inline-3-0) %WorkerServices_obj_map)
+                         (ap ("services" #option-inline-5-0) %WorkerServices_obj_map)
                         )
-                        (ap ("spells" #option-inline-4-0) %WorkerServices_obj_map)
+                        (ap ("spells" #option-inline-6-0) %WorkerServices_obj_map)
                        )
                        (ap ("worker_id" w-0.$.worker_id) %WorkerServices_obj_map)
                       )
@@ -687,98 +824,166 @@ export const runDeployedServices_script = `
             (call %init_peer_id% ("getDataSrv" "-relay-") [] -relay-)
             (par
              (par
-              (new $option-inline
-               (seq
-                (xor
+              (par
+               (par
+                (new $option-inline
                  (seq
-                  (new %MyDeployment_obj_map
+                  (xor
                    (seq
+                    (new %MyDeployment_obj_map
+                     (seq
+                      (seq
+                       (seq
+                        (seq
+                         (seq
+                          (ap ("chainNetworkId" 2358716091832359) %MyDeployment_obj_map)
+                          (ap ("dealId" "2cd0091c6a04613386af1966aea8183c1070171b") %MyDeployment_obj_map)
+                         )
+                         (ap ("dealIdOriginal" "0x2cD0091c6a04613386af1966aea8183C1070171B") %MyDeployment_obj_map)
+                        )
+                        (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment_obj_map)
+                       )
+                       (ap ("timestamp" "2024-05-31T11:16:30.226Z") %MyDeployment_obj_map)
+                      )
+                      (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
+                     )
+                    )
+                    (ap MyDeployment_obj $option-inline)
+                   )
+                   (null)
+                  )
+                  (canon %init_peer_id% $option-inline  #option-inline-0)
+                 )
+                )
+                (new $option-inline-1
+                 (seq
+                  (xor
+                   (seq
+                    (new %MyDeployment2_obj_map
+                     (seq
+                      (seq
+                       (seq
+                        (seq
+                         (seq
+                          (seq
+                           (ap ("chainNetworkId" 2358716091832359) %MyDeployment2_obj_map)
+                           (ap ("dealId" "3d0276bd4e2370b56133ae9b3ebb5ed9ea0b9bed") %MyDeployment2_obj_map)
+                          )
+                          (ap ("dealIdOriginal" "0x3d0276bD4e2370B56133AE9B3Ebb5ed9ea0b9BED") %MyDeployment2_obj_map)
+                         )
+                         (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment2_obj_map)
+                        )
+                        (ap ("matched" false) %MyDeployment2_obj_map)
+                       )
+                       (ap ("timestamp" "2024-05-31T11:26:59.551Z") %MyDeployment2_obj_map)
+                      )
+                      (canon %init_peer_id% %MyDeployment2_obj_map  MyDeployment2_obj)
+                     )
+                    )
+                    (ap MyDeployment2_obj $option-inline-1)
+                   )
+                   (null)
+                  )
+                  (canon %init_peer_id% $option-inline-1  #option-inline-1-0)
+                 )
+                )
+               )
+               (new $option-inline-2
+                (seq
+                 (xor
+                  (seq
+                   (new %MyDeployment3_obj_map
                     (seq
                      (seq
                       (seq
                        (seq
-                        (ap ("chainNetworkId" 2358716091832359) %MyDeployment_obj_map)
-                        (ap ("dealId" "2cd0091c6a04613386af1966aea8183c1070171b") %MyDeployment_obj_map)
+                        (seq
+                         (seq
+                          (ap ("chainNetworkId" 2358716091832359) %MyDeployment3_obj_map)
+                          (ap ("dealId" "adeb03c7f210900a7f0521b73a013935c8943c6a") %MyDeployment3_obj_map)
+                         )
+                         (ap ("dealIdOriginal" "0xadeb03C7f210900A7f0521b73A013935C8943C6a") %MyDeployment3_obj_map)
+                        )
+                        (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment3_obj_map)
                        )
-                       (ap ("dealIdOriginal" "0x2cD0091c6a04613386af1966aea8183C1070171B") %MyDeployment_obj_map)
+                       (ap ("matched" true) %MyDeployment3_obj_map)
                       )
-                      (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment_obj_map)
+                      (ap ("timestamp" "2024-05-31T11:31:37.412Z") %MyDeployment3_obj_map)
                      )
-                     (ap ("timestamp" "2024-05-31T11:16:30.226Z") %MyDeployment_obj_map)
+                     (canon %init_peer_id% %MyDeployment3_obj_map  MyDeployment3_obj)
                     )
-                    (canon %init_peer_id% %MyDeployment_obj_map  MyDeployment_obj)
                    )
+                   (ap MyDeployment3_obj $option-inline-2)
                   )
-                  (ap MyDeployment_obj $option-inline)
+                  (null)
                  )
-                 (null)
+                 (canon %init_peer_id% $option-inline-2  #option-inline-2-0)
                 )
-                (canon %init_peer_id% $option-inline  #option-inline-0)
                )
               )
-              (new $option-inline-1
+              (new $option-inline-3
                (seq
                 (xor
                  (seq
-                  (new %MyDeployment2_obj_map
+                  (new %MyDeployment4_obj_map
                    (seq
                     (seq
                      (seq
                       (seq
                        (seq
                         (seq
-                         (ap ("chainNetworkId" 2358716091832359) %MyDeployment2_obj_map)
-                         (ap ("dealId" "3d0276bd4e2370b56133ae9b3ebb5ed9ea0b9bed") %MyDeployment2_obj_map)
+                         (ap ("chainNetworkId" 2358716091832359) %MyDeployment4_obj_map)
+                         (ap ("dealId" "124b5e53d21d36f8e3fd40e4dcc4ede49302443e") %MyDeployment4_obj_map)
                         )
-                        (ap ("dealIdOriginal" "0x3d0276bD4e2370B56133AE9B3Ebb5ed9ea0b9BED") %MyDeployment2_obj_map)
+                        (ap ("dealIdOriginal" "0x124b5E53D21D36F8E3FD40e4dCc4Ede49302443e") %MyDeployment4_obj_map)
                        )
-                       (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment2_obj_map)
+                       (ap ("definition" "bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm") %MyDeployment4_obj_map)
                       )
-                      (ap ("matched" false) %MyDeployment2_obj_map)
+                      (ap ("matched" true) %MyDeployment4_obj_map)
                      )
-                     (ap ("timestamp" "2024-05-31T11:26:59.551Z") %MyDeployment2_obj_map)
+                     (ap ("timestamp" "2024-06-10T12:07:47.223Z") %MyDeployment4_obj_map)
                     )
-                    (canon %init_peer_id% %MyDeployment2_obj_map  MyDeployment2_obj)
+                    (canon %init_peer_id% %MyDeployment4_obj_map  MyDeployment4_obj)
                    )
                   )
-                  (ap MyDeployment2_obj $option-inline-1)
+                  (ap MyDeployment4_obj $option-inline-3)
                  )
                  (null)
                 )
-                (canon %init_peer_id% $option-inline-1  #option-inline-1-0)
+                (canon %init_peer_id% $option-inline-3  #option-inline-3-0)
                )
               )
              )
-             (new $option-inline-2
+             (new $option-inline-4
               (seq
                (xor
                 (seq
-                 (new %MyDeployment3_obj_map
+                 (new %MyDeployment5_obj_map
                   (seq
                    (seq
                     (seq
                      (seq
                       (seq
                        (seq
-                        (ap ("chainNetworkId" 2358716091832359) %MyDeployment3_obj_map)
-                        (ap ("dealId" "adeb03c7f210900a7f0521b73a013935c8943c6a") %MyDeployment3_obj_map)
+                        (ap ("chainNetworkId" 2358716091832359) %MyDeployment5_obj_map)
+                        (ap ("dealId" "e948a13dc8728db0ab952f61f3e4c095697bcd65") %MyDeployment5_obj_map)
                        )
-                       (ap ("dealIdOriginal" "0xadeb03C7f210900A7f0521b73A013935C8943C6a") %MyDeployment3_obj_map)
+                       (ap ("dealIdOriginal" "0xE948A13dC8728dB0Ab952F61f3E4c095697bCd65") %MyDeployment5_obj_map)
                       )
-                      (ap ("definition" "bafkreihwjgur2lhrlho54ioamyzyqe7qxnkl4r7eyhvupkpnlsnrv4jqfq") %MyDeployment3_obj_map)
+                      (ap ("definition" "bafkreicpid3a3qtbru7gsn7246xekpyupw5qh7mmxktkucjlx4iuvth6tm") %MyDeployment5_obj_map)
                      )
-                     (ap ("matched" true) %MyDeployment3_obj_map)
+                     (ap ("matched" true) %MyDeployment5_obj_map)
                     )
-                    (ap ("timestamp" "2024-05-31T11:31:37.412Z") %MyDeployment3_obj_map)
+                    (ap ("timestamp" "2024-06-10T13:15:00.277Z") %MyDeployment5_obj_map)
                    )
-                   (canon %init_peer_id% %MyDeployment3_obj_map  MyDeployment3_obj)
+                   (canon %init_peer_id% %MyDeployment5_obj_map  MyDeployment5_obj)
                   )
                  )
-                 (ap MyDeployment3_obj $option-inline-2)
+                 (ap MyDeployment5_obj $option-inline-4)
                 )
                 (null)
                )
-               (canon %init_peer_id% $option-inline-2  #option-inline-2-0)
+               (canon %init_peer_id% $option-inline-4  #option-inline-4-0)
               )
              )
             )
@@ -787,10 +992,16 @@ export const runDeployedServices_script = `
             (seq
              (seq
               (seq
-               (ap ("myDeployment" #option-inline-0) %Deals_obj_map)
-               (ap ("myDeployment2" #option-inline-1-0) %Deals_obj_map)
+               (seq
+                (seq
+                 (ap ("myDeployment" #option-inline-0) %Deals_obj_map)
+                 (ap ("myDeployment2" #option-inline-1-0) %Deals_obj_map)
+                )
+                (ap ("myDeployment3" #option-inline-2-0) %Deals_obj_map)
+               )
+               (ap ("myDeployment4" #option-inline-3-0) %Deals_obj_map)
               )
-              (ap ("myDeployment3" #option-inline-2-0) %Deals_obj_map)
+              (ap ("myDeployment5" #option-inline-4-0) %Deals_obj_map)
              )
              (canon %init_peer_id% %Deals_obj_map  Deals_obj)
             )
@@ -865,33 +1076,47 @@ export const runDeployedServices_script = `
                     (seq
                      (seq
                       (seq
-                       (new $-hop-
-                        (new #-hopc-
-                         (canon -relay- $-hop-  #-hopc-)
+                       (seq
+                        (new $-hop-
+                         (new #-hopc-
+                          (canon -relay- $-hop-  #-hopc-)
+                         )
+                        )
+                        (new $-hop-
+                         (new #-hopc-
+                          (canon w-0.$.host_id $-hop-  #-hopc-)
+                         )
                         )
                        )
-                       (new $-hop-
-                        (new #-hopc-
-                         (canon w-0.$.host_id $-hop-  #-hopc-)
+                       (new $array-inline-1
+                        (seq
+                         (seq
+                          (seq
+                           (ap 1.0 $array-inline-1)
+                           (ap 2.0 $array-inline-1)
+                          )
+                          (ap 3.0 $array-inline-1)
+                         )
+                         (canon w-0.$.worker_id.[0] $array-inline-1  #array-inline-1-0)
                         )
                        )
                       )
-                      (call w-0.$.worker_id.[0] ("myService" "greeting") ["fluence"] ret-0)
+                      (call w-0.$.worker_id.[0] ("myService" "call_create_vector") [#array-inline-1-0] ret-0)
                      )
-                     (new $option-inline-3
+                     (new $option-inline-5
                       (seq
                        (xor
-                        (ap ret-0 $option-inline-3)
+                        (ap ret-0 $option-inline-5)
                         (null)
                        )
-                       (canon w-0.$.worker_id.[0] $option-inline-3  #option-inline-3-0)
+                       (canon w-0.$.worker_id.[0] $option-inline-5  #option-inline-5-0)
                       )
                      )
                     )
                     (new %Answer_obj-0_map
                      (seq
                       (seq
-                       (ap ("answer" #option-inline-3-0) %Answer_obj-0_map)
+                       (ap ("answer" #option-inline-5-0) %Answer_obj-0_map)
                        (ap ("worker" w-0) %Answer_obj-0_map)
                       )
                       (canon w-0.$.worker_id.[0] %Answer_obj-0_map  Answer_obj-0)
